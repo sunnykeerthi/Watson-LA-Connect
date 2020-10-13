@@ -1,0 +1,190 @@
+.chat {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: flex-start;
+    margin-top: 5%;
+}
+
+.chat .user-photo {
+    width: 13%;
+    height: 43px;
+    background: #555;
+    border-radius: 50%;
+}
+
+.chat .chat-message {
+    width: 70%;
+    padding: 15px;
+    margin: 6% 10px auto;
+    border: 1px solid;
+}
+
+.userM .chat-message {
+    order: -1;
+}
+
+#send {
+    position: absolute;
+    top: 0;
+    border-radius: 5px;
+    right: 0px;
+    z-index: 2;
+    border: none;
+    top: 10px;
+    height: 30px;
+    cursor: pointer;
+    transform: translateX(2px);
+    background-color: transparent;
+}
+
+body {
+    font-family: 'Nunito';
+}
+
+h2 {
+    font-size: 18px;
+    padding: 10px 20px;
+    color: #575ed8;
+}
+
+.container {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    left: 50px;
+    top: 29px;
+    width: 360px;
+    height: 444px;
+}
+
+#mario-chat {
+    align-content: stretch;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    background-color: var(--WatsonAssistantChat-CARBON-ui-background);
+    border-radius: 0;
+    box-sizing: border-box;
+    color: var(--WatsonAssistantChat-CARBON-text-01);
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-flex: 1;
+    flex: 1;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    height: 100%;
+    margin: 0;
+    min-height: 180px;
+    min-width: 320px;
+    text-align: left;
+    width: 100%;
+}
+
+#chat-window {
+    height: 87%;
+    overflow: auto;
+    background: #f9f9f9;
+    padding: 0.85em;
+}
+
+#output p {
+    padding: 14px 0px;
+    margin: 0 20px;
+    border-bottom: 1px solid #e9e9e9;
+    color: #555;
+}
+
+#feedback p {
+    color: #aaa;
+    padding: 14px 0px;
+    margin: 0 20px;
+}
+
+#output strong {
+    color: #575ed8;
+}
+
+label {
+    box-sizing: border-box;
+    display: block;
+    padding: 10px 20px;
+}
+
+input {
+    border: none;
+    margin: 0px;
+    padding: 0 0 0 0.5em;
+    width: 90%;
+    outline: none;
+    height: 100%;
+}
+
+.buttonIn {
+    width: 100%;
+    height: 12%;
+    position: relative;
+}
+
+.bot .user-photo {
+    background-image: url(https://i.pinimg.com/originals/4c/5f/c0/4c5fc023304e73ca079705ac33c376b8.jpg);
+    background-size: contain;
+}
+
+.userM .user-photo {
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQZNICp8mwhEWT1e0IHbDoqdd0y2EI8RdOwQw&usqp=CAU);
+    background-size: contain;
+}
+
+.transfer {
+    margin: 1em 0 0 auto;
+    text-align: center;
+}
+
+#output .bot::before {
+    background-color: #F2F2F2;
+    content: "\00a0";
+    display: block;
+    height: 16px;
+    width: 16px;
+    position: absolute;
+    left: -10.5px;
+    top: 2px;
+    transform: rotate(47deg) skew(5deg);
+    -moz-transform: rotate(47deg) skew(5deg);
+    -ms-transform: rotate(47deg) skew(5deg);
+    -o-transform: rotate(47deg) skew(5deg);
+    -webkit-transform: rotate(47deg) skew(5deg);
+    box-shadow: 2px 0px 2px 2px rgba( 178, .4, 178, 178);
+}
+
+.material-icons {
+    font-size: 32px !important;
+}
+
+.chat-btn {
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+    border: none;
+    cursor: pointer;
+    background: dodgerblue;
+    color: white;
+    width: 60px;
+    height: 60px;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5)
+}
+
+.chat-btn:hover {
+    opacity: 1;
+}
+
+.chat-popup {
+    display: none;
+    position: fixed;
+    bottom: 80px;
+    right: 120px;
+}
+
+.show {
+    display: flex;
+}

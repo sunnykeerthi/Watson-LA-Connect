@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>WebScockets 101</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <link href="/styles.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <section>
+        <button class="chat-btn">
+            <i class="material-icons">
+                comment
+            </i>
+        </button>
+    </section>
+
+    <div class="chat-popup">
+        <div class="container">
+            <div id="mario-chat">
+                <div id="chat-window">
+                    <div id="output">
+
+                    </div>
+
+                    <div id="feedback"></div>
+                </div>
+                <div class="buttonIn">
+                    <input type="text" placeholder="Enter your Message" id="message">
+                    <button
+                        class="WAC__send-button WAC__button--base WAC__button--primary WAC__send-button WAC__button--base WAC__button--primary fade-out"
+                        id="send" aria-label="Click to send message"><svg focusable="false"
+                            preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                            width="24" height="24" viewBox="0 0 32 32" aria-hidden="true">
+                            <path
+                                d="M27.45,15.11l-22-11a1,1,0,0,0-1.08.12,1,1,0,0,0-.33,1L7,16,4,26.74A1,1,0,0,0,5,28a1,1,0,0,0,.45-.11l22-11a1,1,0,0,0,0-1.78Zm-20.9,10L8.76,17H18V15H8.76L6.55,6.89,24.76,16Z">
+                            </path>
+                        </svg></button>
+                </div>
+
+
+            </div>
+        </div>
+        <script src="/chat.js"></script>
+    </div>
+</body>
+
+</html>
