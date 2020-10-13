@@ -1,1 +1,1 @@
-nodemon
+web node:index
