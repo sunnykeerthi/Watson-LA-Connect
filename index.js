@@ -108,9 +108,9 @@ io.on('connection', function (socket) {
             sessionid = getSessionId.data.id;
 
             const body = {
-                organizationId: envVariables.CHAT_ORGANISATIONID,
-                deploymentId: envVariables.CHAT_DEPLOYMENTID,
-                buttonId: envVariables.CHAT_BUTTONID,
+                organizationId: process.env.CHAT_ORGANISATIONID,
+                deploymentId: process.env.CHAT_DEPLOYMENTID,
+                buttonId: process.env.CHAT_BUTTONID,
                 sessionId: sessionid,
                 userAgent: "Lynx/2.8.8",
                 language: "en-US",
