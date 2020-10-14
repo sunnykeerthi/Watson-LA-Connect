@@ -12,7 +12,7 @@
     border-radius: 50%;
 }
 
-.chat .chat-message {
+.userM .chat-message, .bot .chat-message, .agent .chat-message {
     width: 70%;
     padding: 15px;
     margin: 6% 10px auto;
@@ -21,6 +21,15 @@
 
 .userM .chat-message {
     order: -1;
+    border-radius: 15px 0 15px 15px;
+    background-color: #3b414a;
+    color: #a9acaf;
+}
+
+.bot .chat-message, .agent .chat-message {
+    border-radius: 0 15px 15px 15px;
+    background-color: white;
+    color: black;
 }
 
 #send {
@@ -35,16 +44,6 @@
     cursor: pointer;
     transform: translateX(2px);
     background-color: transparent;
-}
-
-body {
-    font-family: 'Nunito';
-}
-
-h2 {
-    font-size: 18px;
-    padding: 10px 20px;
-    color: #575ed8;
 }
 
 .container {
@@ -81,31 +80,8 @@ h2 {
 #chat-window {
     height: 87%;
     overflow: auto;
-    background: #f9f9f9;
+    background: #f4f4f4;
     padding: 0.85em;
-}
-
-#output p {
-    padding: 14px 0px;
-    margin: 0 20px;
-    border-bottom: 1px solid #e9e9e9;
-    color: #555;
-}
-
-#feedback p {
-    color: #aaa;
-    padding: 14px 0px;
-    margin: 0 20px;
-}
-
-#output strong {
-    color: #575ed8;
-}
-
-label {
-    box-sizing: border-box;
-    display: block;
-    padding: 10px 20px;
 }
 
 input {
@@ -136,23 +112,6 @@ input {
 .transfer {
     margin: 1em 0 0 auto;
     text-align: center;
-}
-
-#output .bot::before {
-    background-color: #F2F2F2;
-    content: "\00a0";
-    display: block;
-    height: 16px;
-    width: 16px;
-    position: absolute;
-    left: -10.5px;
-    top: 2px;
-    transform: rotate(47deg) skew(5deg);
-    -moz-transform: rotate(47deg) skew(5deg);
-    -ms-transform: rotate(47deg) skew(5deg);
-    -o-transform: rotate(47deg) skew(5deg);
-    -webkit-transform: rotate(47deg) skew(5deg);
-    box-shadow: 2px 0px 2px 2px rgba( 178, .4, 178, 178);
 }
 
 .material-icons {
