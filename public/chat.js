@@ -1,5 +1,5 @@
 //Connect
-var socket = io.connect("window.location.hostname");
+var socket = io.connect("https://ibm-la-connect.herokuapp.com/");
 
 //Query Dom
 var message = document.getElementById("message"),
@@ -11,7 +11,7 @@ var message = document.getElementById("message"),
     chatbtn = document.querySelector(".chat-btn");
 
 chatbtn.addEventListener('click', () => {
-    popup.classList.toggle('show');
+popup.classList.toggle('show');
 });
 
 var sessionId;
