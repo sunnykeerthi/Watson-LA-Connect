@@ -2,9 +2,7 @@ const envVariables = require("./config");
 
 // Server URL Environment Variable
 
-const {
-  SERVER_URL
-} = process.env.SERVER_URL;
+const SERVER_URL = process.env.SERVER_URL;
 
 // REST API Endpoints
 
