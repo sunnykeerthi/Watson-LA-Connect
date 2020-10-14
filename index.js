@@ -13,9 +13,9 @@ var sessionkey;
 var affinity;
 var sessionid;
 var app = express();
-var server = app.listen(4000, () => {
+var server = app.listen(process.env.PORT || 4000, () => {
     console.log(`Listening to request on port`);
-})
+});
 
 //Static Files
 app.use(express.static('public'))
@@ -196,5 +196,5 @@ io.on('connection', function (socket) {
             return;
         }
     })
-    
+
 });
