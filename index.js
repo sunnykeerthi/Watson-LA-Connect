@@ -7,7 +7,7 @@ var assistantV2 = require('ibm-watson/assistant/v2');
 require('dotenv').config();
 
 var IBMSessionId;
-
+//comment
 var pullmessageorg;
 var sessionkey;
 var affinity;
@@ -116,8 +116,70 @@ io.on('connection', function (socket) {
                 language: "en-US",
                 screenResolution: "1900x1080",
                 visitorName: "Ms. Jasmine Tay***",
-                prechatDetails: [],
-                prechatEntities: [],
+                prechatDetails: [{
+                        "label": "LastName",
+                        "value": "Tay***",
+                        "entityMaps": [{
+                            "entityName": "contact",
+                            "fieldName": "LastName"
+                        }],
+                        "transcriptFields": [
+                            "LastName__c"
+                        ],
+                        "displayToAgent": true
+                    },
+                    {
+                        "label": "FirstName",
+                        "value": "Jasmine",
+                        "entityMaps": [{
+                            "entityName": "contact",
+                            "fieldName": "FirstName"
+                        }],
+                        "transcriptFields": [
+                            "FirstName__c"
+                        ],
+                        "displayToAgent": true
+                    },
+                    {
+                        "label": "Email",
+                        "value": "lxysfdcdemo@gmail.com",
+                        "entityMaps": [{
+                            "entityName": "contact",
+                            "fieldName": "Email"
+                        }],
+                        "transcriptFields": [
+                            "Email__c"
+                        ],
+                        "displayToAgent": true
+                    }
+                ],
+                prechatEntities: [{
+                    "entityName": "Contact",
+                    "saveToTranscript": "contact",
+                    "linkToEntityField": "ContactId",
+                    "entityFieldsMaps": [{
+                            "fieldName": "LastName",
+                            "label": "LastName",
+                            "doFind": true,
+                            "isExactMatch": true,
+                            "doCreate": true
+                        },
+                        {
+                            "fieldName": "FirstName",
+                            "label": "FirstName",
+                            "doFind": true,
+                            "isExactMatch": true,
+                            "doCreate": true
+                        },
+                        {
+                            "fieldName": "Email",
+                            "label": "Email",
+                            "doFind": true,
+                            "isExactMatch": true,
+                            "doCreate": true
+                        }
+                    ]
+                }],
                 receiveQueueUpdates: true,
                 isPost: true,
             };
