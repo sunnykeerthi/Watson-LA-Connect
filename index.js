@@ -238,7 +238,7 @@ io.on('connection', function (socket) {
                         console.log(conversation);
                         console.log("\n Agent Accepted your request.");
                         io.sockets.emit('A_chat', `\n ${pullmessageorg.messages[0].message.name} is here to help you. Should be joining you any second now.`);
-                        let text;
+                        let text = '';
                         conversation.forEach(item => {
                             if (conversation.length == 1)
                                 text = item;
