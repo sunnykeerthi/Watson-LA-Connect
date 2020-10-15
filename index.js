@@ -16,7 +16,7 @@ var app = express();
 var server = app.listen(PORT, () => {
     console.log(`Listening to request on port ${PORT}`);
 });
-
+var conversation = [];
 //Static Files
 app.use(express.static('public'))
 console.log('Received Init');
@@ -71,9 +71,12 @@ io.on('connection', function (socket) {
         console.log(JSON.stringify(payload));
         const message = await assistant.message(payload);
         try {
-            if (message.result.output.generic[0].response_type == 'text')
+            if (message.result.output.generic[0].response_type == 'text') {
+                conversation.push('Bot: ' + message.result.output.generic[0].text);
+                console.log(conversation);
                 socket.emit('botResponse', message.result.output.generic[0].text);
-            else {
+
+            } else {
                 socket.emit('transferResponse', 'Connecting you to Agent');
             }
         } catch (e) {
@@ -91,12 +94,30 @@ io.on('connection', function (socket) {
             affinity,
             sessionkey
         );
+        socket.emit('botResponse', message.result.output.generic[0].text);
+        conversation.push('User: ' + data.message);
+        if (sendMessage !== "OK") {
+            console.log("\n Error: Cannot Send Message \n");
+            return;
+        }
+    })
+
+    socket.on('transcript', async (data) => {
+        console.log('user: ' + data.message);
+        //socket.emit('U_chat', data.message);
+        let text = data.message;
+        const sendMessage = await helperFunctions.sendMessages(
+            text,
+            affinity,
+            sessionkey
+        );
 
         if (sendMessage !== "OK") {
             console.log("\n Error: Cannot Send Message \n");
             return;
         }
     })
+
 
     socket.on('transfer', async () => {
         console.log(`TeNSFER TO Agent`);
@@ -214,17 +235,23 @@ io.on('connection', function (socket) {
                     }
                     if (pullmessageorg.messages[0].type === "ChatEstablished") {
                         io.sockets.emit('A_chat', 'Agent Accepted');
-
+                        console.log(conversation);
                         console.log("\n Agent Accepted your request.");
                         io.sockets.emit('A_chat', `\n ${pullmessageorg.messages[0].message.name} is here to help you. Should be joining you any second now.`);
 
-                        console.log(
-                            "\n" +
-                            pullmessageorg.messages[0].message.name +
-
-                            " is here to help you. Should be joining you any second now. If you wish to stop the chat at any time, please send the following message: " + "end_chat\n"
+                        let text = conversation;
+                        console.log(text);
+                        const sendMessage = await helperFunctions.sendMessages(
+                            text,
+                            affinity,
+                            sessionkey
                         );
-
+                        //socket.emit('botResponse', message.result.output.generic[0].text);
+                        //conversation.push('User: ' + data.message);
+                        if (sendMessage !== "OK") {
+                            console.log("\n Error: Cannot Send Message \n");
+                            return;
+                        }
                     }
 
                     if (pullmessageorg.messages[0].type === "ChatMessage") {
@@ -250,7 +277,7 @@ io.on('connection', function (socket) {
                     pullmessageorg = pullingMessagesAgain;
                 }
                 io.sockets.emit('A_chat_End', ' Chat Ended. Agent Left The Chat.');
-                console.log("\n Chat Ended. Agent Left The Chat. \n");
+                console.log("\n Chat Ended. Agent left the Chat. \n");
                 return;
             } else {
                 console.log("\n Error: Sending Chat Request Failed \n");

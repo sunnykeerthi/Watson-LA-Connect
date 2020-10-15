@@ -11,7 +11,7 @@ var message = document.getElementById("message"),
     chatbtn = document.querySelector(".chat-btn");
 
 chatbtn.addEventListener('click', () => {
-popup.classList.toggle('show');
+    popup.classList.toggle('show');
 });
 
 var sessionId;
@@ -103,6 +103,12 @@ socket.on("A_chat_End", data => {
     scrollToBottom();
 });
 
+socket.on("sendTranscript", data => {
+    console.log('Receovef');
+    var transcript = output.innerHtml;
+    console.log(transcript);
+    socket.emit('transcript', transcript);
+})
 
 function scrollToBottom() {
     let oDiv = document.getElementById('output');
