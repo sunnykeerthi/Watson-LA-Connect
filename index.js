@@ -74,7 +74,7 @@ io.on('connection', function (socket) {
             if (message.result.output.generic[0].response_type == 'text')
                 socket.emit('botResponse', message.result.output.generic[0].text);
             else {
-                socket.emit('transferResponse', 'Connecting you to Agent New');
+                socket.emit('transferResponse', 'Connecting you to Agent');
             }
         } catch (e) {
             console.log(e)
@@ -104,6 +104,7 @@ io.on('connection', function (socket) {
         const getAgentAvailability = await helperFunctions.agentAvailability();
         console.log(getAgentAvailability);
         const getSessionId = await helperFunctions.sessionId();
+        console.log(getSessionId);
         if (getSessionId.success === true) {
             sessionkey = getSessionId.data.key;
             affinity = getSessionId.data.affinityToken;
