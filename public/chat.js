@@ -103,13 +103,6 @@ socket.on("A_chat_End", data => {
     scrollToBottom();
 });
 
-socket.on("sendTranscript", data => {
-    console.log('Receovef');
-    var transcript = output.innerHtml;
-    console.log(transcript);
-    socket.emit('transcript', transcript);
-})
-
 function scrollToBottom() {
     let oDiv = document.getElementById('output');
     oDiv.lastElementChild.scrollIntoView({

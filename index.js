@@ -102,21 +102,6 @@ io.on('connection', function (socket) {
         }
     })
 
-    socket.on('transcript', async (data) => {
-        console.log('user: ' + data.message);
-        //socket.emit('U_chat', data.message);
-        let text = data.message;
-        const sendMessage = await helperFunctions.sendMessages(
-            text,
-            affinity,
-            sessionkey
-        );
-
-        if (sendMessage !== "OK") {
-            console.log("\n Error: Cannot Send Message \n");
-            return;
-        }
-    })
 
 
     socket.on('transfer', async () => {
