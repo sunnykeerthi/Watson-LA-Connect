@@ -16,7 +16,7 @@ var app = express();
 var server = app.listen(PORT, () => {
     console.log(`Listening to request on port ${PORT}`);
 });
-var conversation = [];
+var conversation;
 //Static Files
 app.use(express.static('public'))
 console.log('Received Init');
@@ -41,6 +41,7 @@ var io = socket(server);
 
 io.on('connection', function (socket) {
     console.log(`Connection Established ${socket.id}`);
+    conversation = [];
     socket.on('initMsg', async () => {
         try {
             const sess = assistant.createSession({
@@ -69,7 +70,6 @@ io.on('connection', function (socket) {
                 text: data.message
             }
         }
-        console.log(JSON.stringify(payload));
         const message = await assistant.message(payload);
         try {
             if (message.result.output.generic[0].response_type == 'text') {
@@ -235,7 +235,6 @@ io.on('connection', function (socket) {
                     }
                     if (pullmessageorg.messages[0].type === "ChatEstablished") {
                         io.sockets.emit('A_chat', 'Agent Accepted');
-                        console.log(conversation);
                         console.log("\n Agent Accepted your request.");
                         io.sockets.emit('A_chat', `\n ${pullmessageorg.messages[0].message.name} is here to help you. Should be joining you any second now.`);
                         let text = '';
@@ -246,6 +245,7 @@ io.on('connection', function (socket) {
                                 text += item + '\n'
                         })
 
+                        console.log('text');
                         console.log(text);
                         const sendMessage = await helperFunctions.sendMessages(
                             text,
