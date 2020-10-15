@@ -8,9 +8,9 @@ const agentAvailability = async () =>
       "X-LIVEAGENT-API-VERSION": 49,
     },
     params: {
-      'Availability.ids': '5732w000000HUCD',
-      'deployment_id': '5722w000000HSZd',
-      'org_id': '00D2w00000CpQUW',
+      'Availability.ids': process.env.CHAT_BUTTONID || '5732w000000HUCD',
+      'deployment_id': process.env.CHAT_DEPLOYMENTID || '5722w000000HSZd',
+      'org_id': process.env.CHAT_ORGANISATIONID || '00D2w00000CpQUW',
       'Availability.needEstimatedWaitTime': 0
     }
   })
