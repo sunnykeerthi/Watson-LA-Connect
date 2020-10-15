@@ -11,5 +11,6 @@ module.exports = {
   chatrequest: `${SERVER_URL}Chasitor/ChasitorInit`,
   pullingmessages: `${SERVER_URL}System/Messages`,
   sendingmessages: `${SERVER_URL}Chasitor/ChatMessage`,
-  stopchat: `${SERVER_URL}Chasitor/ChatEnd`
+  stopchat: `${SERVER_URL}Chasitor/ChatEnd`,
+  availability: `${SERVER_URL}Visitor/Availability`,
 };

@@ -1,6 +1,40 @@
 const axios = require("axios");
 const apiEndpoints = require("./endpoints");
 
+const agentAvailability = async () =>
+  await axios
+  .get(apiEndpoints.availability, {
+    headers: {
+      "X-LIVEAGENT-API-VERSION": 49,
+    },
+    params: {
+      'Availability.ids': '5732w000000HUCD',
+      'Availability.ids': '5722w000000HSZd',
+      'org_id': '00D2w00000CpQUW',
+      'Availability.needEstimatedWaitTime': 0
+    }
+  })
+  .then((res) => res.data)
+  .then((res) => {
+    if (res.messages[0].message.results[0].isAvailable)
+      return {
+        success: true,
+        data: res,
+      };
+    else
+      return {
+        success: false,
+      };
+  })
+  .catch(() => {
+    console.log('Established Session err');
+    return {
+      success: false,
+    };
+  });
+
+
+
 const sessionId = async () =>
   await axios
   .get(apiEndpoints.sessionid, {
@@ -108,3 +142,4 @@ module.exports.sendingChatRequest = sendingChatRequest;
 module.exports.pullingMessages = pullingMessages;
 module.exports.sendMessages = sendMessages;
 module.exports.stopChat = stopChat;
+module.exports.agentAvailability = agentAvailability;
