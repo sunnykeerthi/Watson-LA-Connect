@@ -73,7 +73,7 @@ io.on('connection', function (socket) {
         const message = await assistant.message(payload);
         try {
             if (message.result.output.generic[0].response_type == 'text') {
-                conversation.push('Bot: ' + message.result.output.generic[0].text);
+                conversation.push('<b>Bot:<b> ' + message.result.output.generic[0].text);
                 console.log(conversation);
                 socket.emit('botResponse', message.result.output.generic[0].text);
 
