@@ -73,7 +73,7 @@ io.on('connection', function (socket) {
         const message = await assistant.message(payload);
         try {
             if (message.result.output.generic[0].response_type == 'text') {
-                conversation.push('<b>Bot:<b> ' + message.result.output.generic[0].text);
+                conversation.push('Bot: ' + message.result.output.generic[0].text + '\n');
                 console.log(conversation);
                 socket.emit('botResponse', message.result.output.generic[0].text);
 
@@ -102,6 +102,21 @@ io.on('connection', function (socket) {
         }
     })
 
+    socket.on('transcript', async (data) => {
+        console.log('user: ' + data.message);
+        //socket.emit('U_chat', data.message);
+        let text = data.message;
+        const sendMessage = await helperFunctions.sendMessages(
+            text,
+            affinity,
+            sessionkey
+        );
+
+        if (sendMessage !== "OK") {
+            console.log("\n Error: Cannot Send Message \n");
+            return;
+        }
+    })
 
 
     socket.on('transfer', async () => {
