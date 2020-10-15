@@ -60,7 +60,7 @@ io.on('connection', function (socket) {
 
     socket.on('botRequestMessage', async (data) => {
         console.log(IBMSessionId + '****');
-        conversation.push('User: ' + data.message + '\t');
+        conversation.push('User: ' + data.message + '\n');
         socket.emit('U_chat', data.message);
         payload = {
             assistantId: process.env.WATSON_ASSISTANT_ID,

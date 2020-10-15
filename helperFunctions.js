@@ -6,12 +6,11 @@ const CHECK_AVAILABILITY = `${SERVER_URL}System/SessionId`;
 const CHAT_REQUEST = `${SERVER_URL}System/SessionId`;
 const PULLING_MESSAGES = `${SERVER_URL}System/SessionId`;
 const SENDING_MESSAGES = `${SERVER_URL}System/SessionId`;
-const STOP_CHAT = `${SERVER_URL}System/SessionId`;
 
 
 const agentAvailability = async () =>
   await axios
-  .get(CHECK_AVAILABILITY, {
+  .get(SERVER_URL + 'Visitor/Availability', {
     headers: {
       "X-LIVEAGENT-API-VERSION": 49,
     },
@@ -45,7 +44,7 @@ const agentAvailability = async () =>
 
 const sessionId = async () =>
   await axios
-  .get(GET_SESSION_ID, {
+  .get(apiEndpoints.sessionid, {
     headers: {
       "X-LIVEAGENT-API-VERSION": 49,
       "X-LIVEAGENT-AFFINITY": "null",
@@ -67,7 +66,7 @@ const sessionId = async () =>
 
 const sendingChatRequest = async (body, affinity, sessionkey) =>
   await axios
-  .post(CHAT_REQUEST, body, {
+  .post(apiEndpoints.chatrequest, body, {
     headers: {
       "X-LIVEAGENT-API-VERSION": 49,
       "X-LIVEAGENT-AFFINITY": affinity,
@@ -85,7 +84,7 @@ const sendingChatRequest = async (body, affinity, sessionkey) =>
 
 const pullingMessages = async (affinity, sessionkey) =>
   await axios
-  .get(PULLING_MESSAGES, {
+  .get(apiEndpoints.pullingmessages, {
     headers: {
       "X-LIVEAGENT-API-VERSION": 49,
       "X-LIVEAGENT-AFFINITY": affinity,
@@ -104,7 +103,7 @@ const pullingMessages = async (affinity, sessionkey) =>
 const sendMessages = async (text, affinity, sessionkey) =>
   await axios
   .post(
-    SENDING_MESSAGES, {
+    apiEndpoints.sendingmessages, {
       text: text,
     }, {
       headers: {
@@ -126,7 +125,7 @@ const sendMessages = async (text, affinity, sessionkey) =>
 const stopChat = async (reason, affinity, sessionkey) =>
   await axios
   .post(
-    STOP_CHAT, {
+    apiEndpoints.stopchat, {
       "reason": reason
     }, {
       headers: {
