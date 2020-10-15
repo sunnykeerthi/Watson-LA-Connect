@@ -1,31 +1,17 @@
 const axios = require("axios");
-const apiEndpoints = require("./endpoints");
 
-const agentAvailability = async () =>
-    await axios
-    .get(apiEndpoints.sessionid, {
-        headers: {
-            "X-LIVEAGENT-API-VERSION": 49,
-            "X-LIVEAGENT-AFFINITY": "null",
-        },
-    })
-    .then((res) => res.data)
-    .then((res) => {
-        if (res.messages[0].message.results[0].isAvailable)
-            return {
-                success: true,
-                data: res,
-            };
-        else
-            return {
-                success: false,
-            };
-    })
-    .catch(() => {
-        console.log('Established Session err');
-        return {
-            success: false,
-        };
-    });
+var config = {
+  method: 'get',
+  url: 'https://d.la2-c2-ukb.salesforceliveagent.com/chat/rest/Visitor/Availability?Availability.ids=5732w000000HUCD&Availability.ids=5722w000000HSZd&org_id=00D2w00000CpQUW&Availability.needEstimatedWaitTime=0',
+  headers: { 
+    'X-LIVEAGENT-API-VERSION': '46'
+  }
+};
 
-agentAvailability();
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});

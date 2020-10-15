@@ -1,22 +1,15 @@
 const axios = require("axios");
 const apiEndpoints = require("./endpoints");
-const SERVER_URL = process.env.SERVER_URL || 'https://d.la2-c2-ukb.salesforceliveagent.com/chat/rest/';
-const GET_SESSION_ID = `${SERVER_URL}System/SessionId`;
-const CHECK_AVAILABILITY = `${SERVER_URL}System/SessionId`;
-const CHAT_REQUEST = `${SERVER_URL}System/SessionId`;
-const PULLING_MESSAGES = `${SERVER_URL}System/SessionId`;
-const SENDING_MESSAGES = `${SERVER_URL}System/SessionId`;
-
 
 const agentAvailability = async () =>
   await axios
-  .get(SERVER_URL + 'Visitor/Availability', {
+  .get(apiEndpoints.availability, {
     headers: {
       "X-LIVEAGENT-API-VERSION": 49,
     },
     params: {
       'Availability.ids': '5732w000000HUCD',
-      'Availability.ids': '5722w000000HSZd',
+      'deployment_id': '5722w000000HSZd',
       'org_id': '00D2w00000CpQUW',
       'Availability.needEstimatedWaitTime': 0
     }
