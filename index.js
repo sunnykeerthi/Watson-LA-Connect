@@ -60,7 +60,7 @@ io.on('connection', function (socket) {
 
     socket.on('botRequestMessage', async (data) => {
         console.log(IBMSessionId + '****');
-        conversation.push('User: ' + data.message);
+        conversation.push('User: ' + data.message + '\t');
         socket.emit('U_chat', data.message);
         payload = {
             assistantId: process.env.WATSON_ASSISTANT_ID,
@@ -252,8 +252,6 @@ io.on('connection', function (socket) {
                             affinity,
                             sessionkey
                         );
-                        //socket.emit('botResponse', message.result.output.generic[0].text);
-                        //conversation.push('User: ' + data.message);
                         if (sendMessage !== "OK") {
                             console.log("\n Error: Cannot Send Message \n");
                             return;
