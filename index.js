@@ -5,7 +5,7 @@ const helperFunctions = require("./helperFunctions");
 const envVariables = require("./config");
 var assistantV2 = require('ibm-watson/assistant/v2');
 require('dotenv').config();
-
+var PORT = process.env.PORT || 4000;
 var IBMSessionId;
 //comment
 var pullmessageorg;
@@ -13,8 +13,8 @@ var sessionkey;
 var affinity;
 var sessionid;
 var app = express();
-var server = app.listen(process.env.PORT || 4000, () => {
-    console.log(`Listening to request on port`);
+var server = app.listen(PORT, () => {
+    console.log(`Listening to request on port ${PORT}`);
 });
 
 //Static Files
