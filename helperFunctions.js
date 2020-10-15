@@ -1,9 +1,17 @@
 const axios = require("axios");
 const apiEndpoints = require("./endpoints");
+const SERVER_URL = process.env.SERVER_URL || 'https://d.la2-c2-ukb.salesforceliveagent.com/chat/rest/';
+const GET_SESSION_ID = `${SERVER_URL}System/SessionId`;
+const CHECK_AVAILABILITY = `${SERVER_URL}System/SessionId`;
+const CHAT_REQUEST = `${SERVER_URL}System/SessionId`;
+const PULLING_MESSAGES = `${SERVER_URL}System/SessionId`;
+const SENDING_MESSAGES = `${SERVER_URL}System/SessionId`;
+const STOP_CHAT = `${SERVER_URL}System/SessionId`;
+
 
 const agentAvailability = async () =>
   await axios
-  .get(apiEndpoints.availability, {
+  .get(CHECK_AVAILABILITY, {
     headers: {
       "X-LIVEAGENT-API-VERSION": 49,
     },
@@ -37,7 +45,7 @@ const agentAvailability = async () =>
 
 const sessionId = async () =>
   await axios
-  .get(apiEndpoints.sessionid, {
+  .get(GET_SESSION_ID, {
     headers: {
       "X-LIVEAGENT-API-VERSION": 49,
       "X-LIVEAGENT-AFFINITY": "null",
@@ -59,7 +67,7 @@ const sessionId = async () =>
 
 const sendingChatRequest = async (body, affinity, sessionkey) =>
   await axios
-  .post(apiEndpoints.chatrequest, body, {
+  .post(CHAT_REQUEST, body, {
     headers: {
       "X-LIVEAGENT-API-VERSION": 49,
       "X-LIVEAGENT-AFFINITY": affinity,
@@ -77,7 +85,7 @@ const sendingChatRequest = async (body, affinity, sessionkey) =>
 
 const pullingMessages = async (affinity, sessionkey) =>
   await axios
-  .get(apiEndpoints.pullingmessages, {
+  .get(PULLING_MESSAGES, {
     headers: {
       "X-LIVEAGENT-API-VERSION": 49,
       "X-LIVEAGENT-AFFINITY": affinity,
@@ -96,7 +104,7 @@ const pullingMessages = async (affinity, sessionkey) =>
 const sendMessages = async (text, affinity, sessionkey) =>
   await axios
   .post(
-    apiEndpoints.sendingmessages, {
+    SENDING_MESSAGES, {
       text: text,
     }, {
       headers: {
@@ -118,7 +126,7 @@ const sendMessages = async (text, affinity, sessionkey) =>
 const stopChat = async (reason, affinity, sessionkey) =>
   await axios
   .post(
-    apiEndpoints.stopchat, {
+    STOP_CHAT, {
       "reason": reason
     }, {
       headers: {
