@@ -297,7 +297,7 @@ io.on('connection', function (socket) {
             console.log("\n No Agents are Online. Please try back later \n");
             io.sockets.emit('A_chat', '\n No Agents are Online. Please try back later \n');
 
-            return;
+           // return;
         }
     })
 
