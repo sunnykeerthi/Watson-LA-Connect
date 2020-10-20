@@ -126,169 +126,176 @@ io.on('connection', function (socket) {
         console.log(getAgentAvailability);
         const getSessionId = await helperFunctions.sessionId();
         console.log(getSessionId);
-        if (getSessionId.success === true) {
-            sessionkey = getSessionId.data.key;
-            affinity = getSessionId.data.affinityToken;
-            sessionid = getSessionId.data.id;
+        if (getAgentAvailability.success === true) {
+            if (getSessionId.success === true) {
+                sessionkey = getSessionId.data.key;
+                affinity = getSessionId.data.affinityToken;
+                sessionid = getSessionId.data.id;
 
-            const body = {
-                organizationId: process.env.CHAT_ORGANISATIONID || envVariables.CHAT_ORGANISATIONID,
-                deploymentId: process.env.CHAT_DEPLOYMENTID || envVariables.CHAT_DEPLOYMENTID,
-                buttonId: process.env.CHAT_BUTTONID || envVariables.CHAT_BUTTONID,
-                sessionId: sessionid,
-                userAgent: "Lynx/2.8.8",
-                language: "en-US",
-                screenResolution: "1900x1080",
-                visitorName: "Ms. Jasmine Tay***",
-                prechatDetails: [{
-                        "label": "LastName",
-                        "value": "Tay***",
-                        "entityMaps": [{
-                            "entityName": "contact",
-                            "fieldName": "LastName"
-                        }],
-                        "transcriptFields": [
-                            "LastName__c"
-                        ],
-                        "displayToAgent": true
-                    },
-                    {
-                        "label": "FirstName",
-                        "value": "Jasmine",
-                        "entityMaps": [{
-                            "entityName": "contact",
-                            "fieldName": "FirstName"
-                        }],
-                        "transcriptFields": [
-                            "FirstName__c"
-                        ],
-                        "displayToAgent": true
-                    },
-                    {
-                        "label": "Email",
-                        "value": "lxysfdcdemo@gmail.com",
-                        "entityMaps": [{
-                            "entityName": "contact",
-                            "fieldName": "Email"
-                        }],
-                        "transcriptFields": [
-                            "Email__c"
-                        ],
-                        "displayToAgent": true
-                    }
-                ],
-                prechatEntities: [{
-                    "entityName": "Contact",
-                    "saveToTranscript": "contact",
-                    "linkToEntityField": "ContactId",
-                    "entityFieldsMaps": [{
-                            "fieldName": "LastName",
+                const body = {
+                    organizationId: process.env.CHAT_ORGANISATIONID || envVariables.CHAT_ORGANISATIONID,
+                    deploymentId: process.env.CHAT_DEPLOYMENTID || envVariables.CHAT_DEPLOYMENTID,
+                    buttonId: process.env.CHAT_BUTTONID || envVariables.CHAT_BUTTONID,
+                    sessionId: sessionid,
+                    userAgent: "Lynx/2.8.8",
+                    language: "en-US",
+                    screenResolution: "1900x1080",
+                    visitorName: "Ms. Jasmine Tay***",
+                    prechatDetails: [{
                             "label": "LastName",
-                            "doFind": true,
-                            "isExactMatch": true,
-                            "doCreate": true
+                            "value": "Tay***",
+                            "entityMaps": [{
+                                "entityName": "contact",
+                                "fieldName": "LastName"
+                            }],
+                            "transcriptFields": [
+                                "LastName__c"
+                            ],
+                            "displayToAgent": true
                         },
                         {
-                            "fieldName": "FirstName",
                             "label": "FirstName",
-                            "doFind": true,
-                            "isExactMatch": true,
-                            "doCreate": true
+                            "value": "Jasmine",
+                            "entityMaps": [{
+                                "entityName": "contact",
+                                "fieldName": "FirstName"
+                            }],
+                            "transcriptFields": [
+                                "FirstName__c"
+                            ],
+                            "displayToAgent": true
                         },
                         {
-                            "fieldName": "Email",
                             "label": "Email",
-                            "doFind": true,
-                            "isExactMatch": true,
-                            "doCreate": true
+                            "value": "lxysfdcdemo@gmail.com",
+                            "entityMaps": [{
+                                "entityName": "contact",
+                                "fieldName": "Email"
+                            }],
+                            "transcriptFields": [
+                                "Email__c"
+                            ],
+                            "displayToAgent": true
                         }
-                    ]
-                }],
-                receiveQueueUpdates: true,
-                isPost: true,
-            };
+                    ],
+                    prechatEntities: [{
+                        "entityName": "Contact",
+                        "saveToTranscript": "contact",
+                        "linkToEntityField": "ContactId",
+                        "entityFieldsMaps": [{
+                                "fieldName": "LastName",
+                                "label": "LastName",
+                                "doFind": true,
+                                "isExactMatch": true,
+                                "doCreate": true
+                            },
+                            {
+                                "fieldName": "FirstName",
+                                "label": "FirstName",
+                                "doFind": true,
+                                "isExactMatch": true,
+                                "doCreate": true
+                            },
+                            {
+                                "fieldName": "Email",
+                                "label": "Email",
+                                "doFind": true,
+                                "isExactMatch": true,
+                                "doCreate": true
+                            }
+                        ]
+                    }],
+                    receiveQueueUpdates: true,
+                    isPost: true,
+                };
 
-            const sendingChatRequest = await helperFunctions.sendingChatRequest(
-                body,
-                affinity,
-                sessionkey
-            );
-
-            if (sendingChatRequest === true) {
-                console.log(
-                    "\n Chat Session Initiated Successfully."
-                );
-
-                pullmessageorg = await helperFunctions.pullingMessages(
+                const sendingChatRequest = await helperFunctions.sendingChatRequest(
+                    body,
                     affinity,
                     sessionkey
                 );
 
-                while (pullmessageorg.messages[0].type != "ChatEnded") {
+                if (sendingChatRequest === true) {
+                    console.log(
+                        "\n Chat Session Initiated Successfully."
+                    );
 
-                    if (pullmessageorg.messages[0].type === "ChatRequestSuccess") {
-                        io.sockets.emit('A_chat', ' Waiting for agent to accept your request.');
-                        console.log(
-
-                            "\n Waiting for agent to accept your request."
-                        );
-                    }
-                    if (pullmessageorg.messages[0].type === "ChatEstablished") {
-                        io.sockets.emit('A_chat', 'Agent Accepted');
-                        console.log("\n Agent Accepted your request.");
-                        io.sockets.emit('A_chat', `\n ${pullmessageorg.messages[0].message.name} is here to help you. Should be joining you any second now.`);
-                        let text = '';
-                        conversation.forEach(item => {
-                            if (conversation.length == 1)
-                                text = item;
-                            else
-                                text += item + '\n'
-                        })
-
-                        console.log('text');
-                        console.log(text);
-                        const sendMessage = await helperFunctions.sendMessages(
-                            text,
-                            affinity,
-                            sessionkey
-                        );
-                        if (sendMessage !== "OK") {
-                            console.log("\n Error: Cannot Send Message \n");
-                            return;
-                        }
-                    }
-
-                    if (pullmessageorg.messages[0].type === "ChatMessage") {
-                        console.log(
-                            "\n" + pullmessageorg.messages[0].message.name +
-                            " : " +
-                            pullmessageorg.messages[0].message.text +
-                            "\n"
-                        );
-                        io.sockets.emit('A_chatText',
-                            "\n" + pullmessageorg.messages[0].message.name +
-                            " : " +
-                            pullmessageorg.messages[0].message.text +
-                            "\n"
-                        );
-
-                    }
-
-                    const pullingMessagesAgain = await helperFunctions.pullingMessages(
+                    pullmessageorg = await helperFunctions.pullingMessages(
                         affinity,
                         sessionkey
                     );
-                    pullmessageorg = pullingMessagesAgain;
+
+                    while (pullmessageorg.messages[0].type != "ChatEnded") {
+
+                        if (pullmessageorg.messages[0].type === "ChatRequestSuccess") {
+                            io.sockets.emit('A_chat', ' Waiting for agent to accept your request.');
+                            console.log(
+
+                                "\n Waiting for agent to accept your request."
+                            );
+                        }
+                        if (pullmessageorg.messages[0].type === "ChatEstablished") {
+                            io.sockets.emit('A_chat', 'Agent Accepted');
+                            console.log("\n Agent Accepted your request.");
+                            io.sockets.emit('A_chat', `\n ${pullmessageorg.messages[0].message.name} is here to help you. Should be joining you any second now.`);
+                            let text = '';
+                            conversation.forEach(item => {
+                                if (conversation.length == 1)
+                                    text = item;
+                                else
+                                    text += item + '\n'
+                            })
+
+                            console.log('text');
+                            console.log(text);
+                            const sendMessage = await helperFunctions.sendMessages(
+                                text,
+                                affinity,
+                                sessionkey
+                            );
+                            if (sendMessage !== "OK") {
+                                console.log("\n Error: Cannot Send Message \n");
+                                return;
+                            }
+                        }
+
+                        if (pullmessageorg.messages[0].type === "ChatMessage") {
+                            console.log(
+                                "\n" + pullmessageorg.messages[0].message.name +
+                                " : " +
+                                pullmessageorg.messages[0].message.text +
+                                "\n"
+                            );
+                            io.sockets.emit('A_chatText',
+                                "\n" + pullmessageorg.messages[0].message.name +
+                                " : " +
+                                pullmessageorg.messages[0].message.text +
+                                "\n"
+                            );
+
+                        }
+
+                        const pullingMessagesAgain = await helperFunctions.pullingMessages(
+                            affinity,
+                            sessionkey
+                        );
+                        pullmessageorg = pullingMessagesAgain;
+                    }
+                    io.sockets.emit('A_chat_End', ' Chat Ended. Agent Left The Chat.');
+                    console.log("\n Chat Ended. Agent left the Chat. \n");
+                    return;
+                } else {
+                    console.log("\n Error: Sending Chat Request Failed \n");
+                    return;
                 }
-                io.sockets.emit('A_chat_End', ' Chat Ended. Agent Left The Chat.');
-                console.log("\n Chat Ended. Agent left the Chat. \n");
-                return;
             } else {
-                console.log("\n Error: Sending Chat Request Failed \n");
+                console.log("\n Error: Cannot Get Session Id \n");
                 return;
             }
         } else {
-            console.log("\n Error: Cannot Get Session Id \n");
+            console.log("\n No Agents are Online. Please try back later \n");
+            io.sockets.emit('A_chat', '\n No Agents are Online. Please try back later \n');
+
             return;
         }
     })
