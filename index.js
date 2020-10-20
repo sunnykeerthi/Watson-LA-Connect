@@ -220,7 +220,7 @@ io.on('connection', function (socket) {
                     console.log(
                         "\n Chat Session Initiated Successfully."
                     );
-
+                    
                     pullmessageorg = await helperFunctions.pullingMessages(
                         affinity,
                         sessionkey

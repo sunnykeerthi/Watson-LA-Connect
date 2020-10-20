@@ -67,7 +67,10 @@ const sendingChatRequest = async (body, affinity, sessionkey) =>
       "X-LIVEAGENT-SEQUENCE": 1,
     },
   })
-  .then((res) => res.data)
+  .then((res) => {
+    console.log('res.data');
+    return res.data;
+  })
   .then(() => {
     return true;
   })
