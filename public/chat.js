@@ -56,6 +56,13 @@ socket.on("A_chat", data => {
     console.log(JSON.stringify(data));
     feedback.innerHTML = "";
     output.innerHTML += `<div class="transfer"><div class="chat-message">${data}</div></div>`;
+    if (!data.includes('No Agents are Online.')) {
+        console.log('non bot convo');
+        botConvo = false;
+    } else {
+        console.log('bot conv');
+    }
+
     scrollToBottom();
 });
 socket.on("A_chatText", data => {
@@ -79,15 +86,11 @@ socket.on("botResponse", data => {
 });
 
 socket.on("transferResponse", data => {
-    console.log(data);
-
+    console.log(JSON.stringify(data));
     feedback.innerHTML = "";
     output.innerHTML += `<div class="transfer"><div class="chat-message">${data}</div></div>`;
-    if (!data.includes('No Agents are Online.')) {
-        console.log('non bot convo');
-        botConvo = false;
-        socket.emit('transfer', {});
-    }
+
+    socket.emit('transfer', {});
     scrollToBottom();
 });
 
