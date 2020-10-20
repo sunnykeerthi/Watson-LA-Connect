@@ -79,6 +79,8 @@ socket.on("botResponse", data => {
 });
 
 socket.on("transferResponse", data => {
+    console.log(JSON.stringify(data));
+
     feedback.innerHTML = "";
     output.innerHTML += `<div class="transfer"><div class="chat-message">${data}</div></div>`;
     if (!data.includes('No Agents are Online.')) {
