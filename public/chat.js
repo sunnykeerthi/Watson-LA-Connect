@@ -79,11 +79,13 @@ socket.on("botResponse", data => {
 });
 
 socket.on("transferResponse", data => {
-    console.log('bot convo');
     feedback.innerHTML = "";
     output.innerHTML += `<div class="transfer"><div class="chat-message">${data}</div></div>`;
-    botConvo = false;
-    socket.emit('transfer', {});
+    if (!data.includes('No Agents are Online.')) {
+        console.log('non bot convo');
+        botConvo = false;
+        socket.emit('transfer', {});
+    }
     scrollToBottom();
 });
 
