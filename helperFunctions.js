@@ -69,7 +69,7 @@ const sendingChatRequest = async (body, affinity, sessionkey) =>
   })
   .then((res) => {
     console.log('res.data');
-    console.log(JSON.stringify(res.data));
+    console.log(JSON.stringify(res));
     return res.data;
   })
   .then(() => {
