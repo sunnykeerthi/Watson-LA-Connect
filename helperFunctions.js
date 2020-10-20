@@ -11,7 +11,7 @@ const agentAvailability = async () =>
       'Availability.ids': process.env.CHAT_BUTTONID || '5732w000000HUCD',
       'deployment_id': process.env.CHAT_DEPLOYMENTID || '5722w000000HSZd',
       'org_id': process.env.CHAT_ORGANISATIONID || '00D2w00000CpQUW',
-      'Availability.needEstimatedWaitTime': 0
+      'Availability.needEstimatedWaitTime': 1
     }
   })
   .then((res) => res.data)
@@ -67,11 +67,7 @@ const sendingChatRequest = async (body, affinity, sessionkey) =>
       "X-LIVEAGENT-SEQUENCE": 1,
     },
   })
-  .then((res) => {
-    console.log('res.data');
-    console.log(JSON.stringify(res));
-    return res.data;
-  })
+  .then((res) => {res.data})
   .then(() => {
     return true;
   })
