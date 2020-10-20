@@ -220,7 +220,7 @@ io.on('connection', function (socket) {
                     console.log(
                         "\n Chat Session Initiated Successfully."
                     );
-                    
+
                     pullmessageorg = await helperFunctions.pullingMessages(
                         affinity,
                         sessionkey
@@ -231,7 +231,7 @@ io.on('connection', function (socket) {
                     while (pullmessageorg.messages[0].type != "ChatEnded") {
 
                         if (pullmessageorg.messages[0].type === "ChatRequestSuccess") {
-                            io.sockets.emit('A_chat', ' Waiting for agent to accept your request.');
+                            io.sockets.emit('A_chat', ` Waiting for agent to accept your request.\n Your are in position ${getAgentAvailability.data.messages[0].message.results[0].estimatedWaitTime}`);
                             console.log(
 
                                 "\n Waiting for agent to accept your request."
