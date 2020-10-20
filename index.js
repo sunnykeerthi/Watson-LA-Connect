@@ -124,9 +124,10 @@ io.on('connection', function (socket) {
         console.log(`Entereed`)
         const getAgentAvailability = await helperFunctions.agentAvailability();
         console.log(getAgentAvailability);
-        const getSessionId = await helperFunctions.sessionId();
-        console.log(getSessionId);
         if (getAgentAvailability.success === true) {
+            const getSessionId = await helperFunctions.sessionId();
+            console.log(getSessionId);
+
             if (getSessionId.success === true) {
                 sessionkey = getSessionId.data.key;
                 affinity = getSessionId.data.affinityToken;
