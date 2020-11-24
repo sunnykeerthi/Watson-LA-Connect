@@ -19,10 +19,7 @@ Once done the deployment. Click Manage App and select Settings tab.
 Scroll down to Config Vars Section Click Reveal Config Vars and crate config vars as below.
 
 
-| --- | --- |
-| git status | List all new or modified files |
-| git diff | Show file differences that haven't been staged |
-
+| Key | Value |
 | --- | --- |
 | CHAT BUTTONID | LA Chat Button Id |
 | CHAT DEPLOYMENTID | LA Chat Deployment Id (Not embeddded service deployment key) |
