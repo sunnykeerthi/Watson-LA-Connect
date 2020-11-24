@@ -43,7 +43,8 @@ From the pop up
 
 ![alt text](<https://i.imgur.com/dixw4GV.png>)
 
-
+| Watson Key | Heroku Key |
+| --- | --- |
 | Skill ID | IBM Watson Assistant Id |
 | API key | IBM Watson Assistant Key |
 | Legacy v1 workspace URL | IBM Watson Assistant URL (Note: consider the URL before _/v1/(Excluding)_) | 
