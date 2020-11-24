@@ -1,8 +1,8 @@
-# Watson-LA-Connect
+# IBM Watson-Salesforce Live Agent-Connect
 - This is a simple Javascript app built using Salesforce Chat REST API that helps you communicate between IBM Watson and Live Agent.
 - Heroku acts as the orchestrator.
 
-# Prerequisits:
+## Prerequisits:
 
 - Saleforce Developer Account with Live Agent(Chat) Setup.
 - Heroku Account.
