@@ -18,13 +18,14 @@ Once done the deployment. Click Manage App and select Settings tab.
 
 Scroll down to Config Vars Section Click Reveal Config Vars and crate config vars as below.
 
-| CHAT\_BUTTONID | LA Chat Button Id |
-| CHAT\_DEPLOYMENTID | LA Chat Deployment Id (Not embeddded service deployment key) |
-| CHAT\_ORGANISATIONID | Org Id |
-| SERVER\_URL | Chat URL |
-| WATSON\_ASSISTANT\_ID | IBM Watson Assistant Id |
-| WATSON\_ASSISTANT\_KEY | IBM Watson Assistant Key |
-| WATSON\_ASSISTANT\_URL | IBM Watson Assistant URL |
+| CHAT BUTTONID | LA Chat Button Id |
+| CHAT DEPLOYMENTID | LA Chat Deployment Id (Not embeddded service deployment key) |
+| CHAT ORGANISATIONID | Org Id |
+| SERVER URL | Chat URL |
+| WATSON ASSISTANT ID | IBM Watson Assistant Id |
+| WATSON ASSISTANT KEY | IBM Watson Assistant Key |
+| WATSON ASSISTANT URL | IBM Watson Assistant URL |
+
 
 # Where do I get these Details
 **Salesforce**
@@ -40,9 +41,9 @@ From the pop up
 ![alt text](<https://i.imgur.com/dixw4GV.png>)
 
 
-| Skill\_ID | IBM Watson Assistant Id |
-| API\_key | IBM Watson Assistant Key |
-| Legacy\_v1\_workspace\_URL | IBM Watson Assistant URL (Note: consider the URL before _/v1/(Excluding)_) | 
+| Skill ID | IBM Watson Assistant Id |
+| API key | IBM Watson Assistant Key |
+| Legacy v1 workspace URL | IBM Watson Assistant URL (Note: consider the URL before _/v1/(Excluding)_) | 
 
 ![alt text](<https://i.imgur.com/1iFRiqT.png>)
 
