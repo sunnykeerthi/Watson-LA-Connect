@@ -1,0 +1,7 @@
+{
+    "name": "IBM Watson - LA",
+    "description": "IBM Watson Live Agent Integration",
+    "repository": "https://github.com/sunnykeerthi/Watson-LA-Connect",
+    "logo": "https://node-js-sample.herokuapp.com/node.png",
+    "keywords": ["node", "express", "static"]
+}
