@@ -8,11 +8,11 @@
 - Heroku Account.
 - IBM Watson Account
 
-Installation:
+## Installation:
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/sunnykeerthi/Watson-LA-Connect/tree/main)
 
-Instructions:
+## Instructions:
 
 Once done the deployment. Click Manage App and select Settings tab.
 
@@ -43,12 +43,15 @@ From the pop up
 
 ![alt text](<https://i.imgur.com/dixw4GV.png>)
 
+
 | Watson Key | Heroku Key |
 | --- | --- |
 | Skill ID | IBM Watson Assistant Id |
 | API key | IBM Watson Assistant Key |
 | Legacy v1 workspace URL | IBM Watson Assistant URL (Note: consider the URL before _/v1/(Excluding)_) | 
 
+
 ![alt text](<https://i.imgur.com/1iFRiqT.png>)
 
 
+- Open the app and test.
