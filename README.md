@@ -18,6 +18,7 @@ Once done the deployment. Click Manage App and select Settings tab.
 
 Scroll down to Config Vars Section Click Reveal Config Vars and crate config vars as below.
 
+![alt text](<https://i.imgur.com/co88ccN.png>)
 
 | Key | Value |
 | --- | --- |
