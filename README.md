@@ -8,6 +8,16 @@
 - Heroku Account.
 - IBM Watson Account
 
+## Demo
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/xKrZFhv1FLM/0.jpg)](https://www.youtube.com/watch?v=xKrZFhv1FLM)
+
+
+## Architecture
+
+![alt text](<https://i.imgur.com/HGjNQBx.png>)
+
+
 ## Installation:
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/sunnykeerthi/Watson-LA-Connect/tree/main)
