@@ -32,13 +32,13 @@ Scroll down to Config Vars Section Click Reveal Config Vars and crate config var
 
 | Key | Value |
 | --- | --- |
-| CHAT BUTTONID | LA Chat Button Id |
-| CHAT DEPLOYMENTID | LA Chat Deployment Id (Not embeddded service deployment key) |
-| CHAT ORGANISATIONID | Org Id |
-| SERVER URL | Chat URL |
-| WATSON ASSISTANT ID | IBM Watson Assistant Id |
-| WATSON ASSISTANT KEY | IBM Watson Assistant Key |
-| WATSON ASSISTANT URL | IBM Watson Assistant URL |
+| CHAT_BUTTONID | LA Chat Button Id |
+| CHAT_DEPLOYMENTID | LA Chat Deployment Id (Not embeddded service deployment key) |
+| CHAT_ORGANISATIONID | Org Id |
+| SERVER_URL | Chat URL |
+| WATSON_ASSISTANT_ID | IBM Watson Assistant Id |
+| WATSON_ASSISTANT_KEY | IBM Watson Assistant Key |
+| WATSON_ASSISTANT_URL | IBM Watson Assistant URL |
 
 
 # Where do I get these Details
