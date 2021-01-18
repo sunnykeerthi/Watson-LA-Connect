@@ -45,12 +45,12 @@ io.on('connection', function (socket) {
     socket.on('initMsg', async () => {
         try {
             const sess = assistant.createSession({
-                    assistantId: process.env.WATSON_ASSISTANT_ID
-                }).then(data => {
-                    IBMSessionId = data['result']['session_id'];
-                    console.log(`IBM Session Id is ${IBMSessionId}`);
-                    socket.emit('IBMSessId', IBMSessionId);
-                })
+                assistantId: process.env.WATSON_ASSISTANT_ID
+            }).then(data => {
+                IBMSessionId = data['result']['session_id'];
+                console.log(`IBM Session Id is ${IBMSessionId}`);
+                socket.emit('IBMSessId', IBMSessionId);
+            })
                 .catch(e => console.log(e));
         } catch (err) {
             console.log(err);
@@ -76,6 +76,13 @@ io.on('connection', function (socket) {
                 conversation.push('Bot: ' + message.result.output.generic[0].text + '\n');
                 console.log(conversation);
                 socket.emit('botResponse', message.result.output.generic[0].text);
+
+            } else if (message.result.output.generic[0].response_type == 'options') {
+                var opts = [];
+                message.result.output.generic[0].options.forEach(item => opts.push(item.label));
+                //conversation.push('Bot: ' + message.result.output.generic[0].text + '\n');
+                console.log(JSON.stringify(opts));
+                //socket.emit('botResponse', message.result.output.generic[0].text);
 
             } else {
                 socket.emit('transferResponse', 'Connecting you to Agent');
@@ -143,67 +150,67 @@ io.on('connection', function (socket) {
                     screenResolution: "1900x1080",
                     visitorName: "Ms. Jasmine Tay***",
                     prechatDetails: [{
-                            "label": "LastName",
-                            "value": "Tay***",
-                            "entityMaps": [{
-                                "entityName": "contact",
-                                "fieldName": "LastName"
-                            }],
-                            "transcriptFields": [
-                                "LastName__c"
-                            ],
-                            "displayToAgent": true
-                        },
-                        {
-                            "label": "FirstName",
-                            "value": "Jasmine",
-                            "entityMaps": [{
-                                "entityName": "contact",
-                                "fieldName": "FirstName"
-                            }],
-                            "transcriptFields": [
-                                "FirstName__c"
-                            ],
-                            "displayToAgent": true
-                        },
-                        {
-                            "label": "Email",
-                            "value": "lxysfdcdemo@gmail.com",
-                            "entityMaps": [{
-                                "entityName": "contact",
-                                "fieldName": "Email"
-                            }],
-                            "transcriptFields": [
-                                "Email__c"
-                            ],
-                            "displayToAgent": true
-                        }
+                        "label": "LastName",
+                        "value": "Tay***",
+                        "entityMaps": [{
+                            "entityName": "contact",
+                            "fieldName": "LastName"
+                        }],
+                        "transcriptFields": [
+                            "LastName__c"
+                        ],
+                        "displayToAgent": true
+                    },
+                    {
+                        "label": "FirstName",
+                        "value": "Jasmine",
+                        "entityMaps": [{
+                            "entityName": "contact",
+                            "fieldName": "FirstName"
+                        }],
+                        "transcriptFields": [
+                            "FirstName__c"
+                        ],
+                        "displayToAgent": true
+                    },
+                    {
+                        "label": "Email",
+                        "value": "lxysfdcdemo@gmail.com",
+                        "entityMaps": [{
+                            "entityName": "contact",
+                            "fieldName": "Email"
+                        }],
+                        "transcriptFields": [
+                            "Email__c"
+                        ],
+                        "displayToAgent": true
+                    }
                     ],
                     prechatEntities: [{
                         "entityName": "Contact",
                         "saveToTranscript": "contact",
                         "linkToEntityField": "ContactId",
                         "entityFieldsMaps": [{
-                                "fieldName": "LastName",
-                                "label": "LastName",
-                                "doFind": true,
-                                "isExactMatch": true,
-                                "doCreate": true
-                            },
-                            {
-                                "fieldName": "FirstName",
-                                "label": "FirstName",
-                                "doFind": true,
-                                "isExactMatch": true,
-                                "doCreate": true
-                            },
-                            {
-                                "fieldName": "Email",
-                                "label": "Email",
-                                "doFind": true,
-                                "isExactMatch": true,
-                                "doCreate": true
-                            }
+                            "fieldName": "LastName",
+                            "label": "LastName",
+                            "doFind": true,
+                            "isExactMatch": true,
+                            "doCreate": true
+                        },
+                        {
+                            "fieldName": "FirstName",
+                            "label": "FirstName",
+                            "doFind": true,
+                            "isExactMatch": true,
+                            "doCreate": true
+                        },
+                        {
+                            "fieldName": "Email",
+                            "label": "Email",
+                            "doFind": true,
+                            "isExactMatch": true,
+                            "doCreate": true
+                        }
                         ]
                     }],
                     receiveQueueUpdates: true,
