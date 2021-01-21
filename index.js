@@ -79,7 +79,7 @@ io.on('connection', function (socket) {
                 console.log(conversation);
                 socket.emit('botResponse', message.result.output.generic[0].text);
 
-            } else if (message.result.output.generic[0].response_type == 'options') {
+            } else if (message.result.output.generic[0].response_type == 'option') {
                 var opts = [];
                 message.result.output.generic[0].options.forEach(item => opts.push(item.label));
                 //conversation.push('Bot: ' + message.result.output.generic[0].text + '\n');
