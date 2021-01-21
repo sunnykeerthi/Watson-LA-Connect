@@ -70,6 +70,9 @@ io.on('connection', function (socket) {
             }
         }
         const message = await assistant.message(payload);
+        console.log('----------');
+        console.log(JSON.stringify(message.result));
+        console.log('----------');
         try {
             if (message.result.output.generic[0].response_type == 'text') {
                 conversation.push('Bot: ' + message.result.output.generic[0].text + '\n');
@@ -84,6 +87,7 @@ io.on('connection', function (socket) {
                 //socket.emit('botResponse', message.result.output.generic[0].text);
 
             } else {
+                console.log('entered else block');
                 socket.emit('transferResponse', 'Connecting you to Agent');
             }
         } catch (e) {
