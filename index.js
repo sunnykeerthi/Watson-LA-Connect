@@ -66,7 +66,6 @@ io.on('connection', function (socket) {
             assistantId: process.env.WATSON_ASSISTANT_ID,
             sessionId: IBMSessionId,
             input: {
-                message_type: 'text',
                 text: data.message
             }
         }
