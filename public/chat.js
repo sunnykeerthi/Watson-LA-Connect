@@ -110,7 +110,7 @@ socket.on("A_chat_End", data => {
     scrollToBottom();
 });
 
-socket.on("options", data => {
+socket.on("optns", data => {
     var _data = data;
 
     feedback.innerHTML = "";
@@ -125,11 +125,6 @@ socket.on("options", data => {
     output.innerHTML += `</div></div>`;
     scrollToBottom();
 
-
-    feedback.innerHTML = "";
-    output.innerHTML += `<div class="transfer"><div class="chat-message"> ${data}</div></div>`;
-    botConvo = true;
-    scrollToBottom();
 });
 
 function clicked(data) {

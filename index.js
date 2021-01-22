@@ -83,8 +83,8 @@ io.on('connection', function (socket) {
                 //conversation.push('Bot: ' + message.result.output.generic[0].text + '\n');
                 conversation.push('Bot: ' + message.result.output.generic[0].title + '\n');
                 console.log(conversation);
-                //socket.emit('botResponse', message.result.output.generic[0].title);
-                socket.emit('options', opts)
+                socket.emit('botResponse', message.result.output.generic[0].title);
+                socket.emit('optns', opts)
                 console.log(JSON.stringify(opts));
 
             } else {
