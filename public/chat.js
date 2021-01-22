@@ -110,6 +110,32 @@ socket.on("A_chat_End", data => {
     scrollToBottom();
 });
 
+socket.on("options", data => {
+    var _data = data;
+
+    feedback.innerHTML = "";
+    output.innerHTML = `<div class="chat bot"> <div class="user-photo"> </div><div class="chat-message">`;
+    _data.forEach(item => {
+        var btn = document.createElement("BUTTON");
+        btn.className = 'TestClass';
+        btn.innerHTML = item;
+        btn.setAttribute('onclick', 'clicked(' + item + ')');
+        output.appendChild(btn);
+    });
+    output.innerHTML += `</div></div>`;
+    scrollToBottom();
+
+
+    feedback.innerHTML = "";
+    output.innerHTML += `<div class="transfer"><div class="chat-message"> ${data}</div></div>`;
+    botConvo = true;
+    scrollToBottom();
+});
+
+function clicked(data) {
+    console.log(data);
+}
+
 function scrollToBottom() {
     let oDiv = document.getElementById('output');
     oDiv.lastElementChild.scrollIntoView({
