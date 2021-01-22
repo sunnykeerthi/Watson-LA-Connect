@@ -112,7 +112,7 @@ socket.on("A_chat_End", data => {
 
 socket.on("optns", data => {
     var _data = data;
-
+    console.log('entered optns')
     feedback.innerHTML = "";
     output.innerHTML = `<div class="chat bot"> <div class="user-photo"> </div><div class="chat-message">`;
     _data.forEach(item => {
