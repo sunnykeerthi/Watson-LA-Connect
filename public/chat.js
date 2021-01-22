@@ -119,7 +119,7 @@ socket.on("options", data => {
         var btn = document.createElement("BUTTON");
         btn.className = 'TestClass';
         btn.innerHTML = item;
-        btn.setAttribute('onclick', 'clicked(' + item + ')');
+        btn.setAttribute('onclick', 'clicked(\'' + item + '\')')
         output.appendChild(btn);
     });
     output.innerHTML += `</div></div>`;
