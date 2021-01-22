@@ -134,9 +134,7 @@ socket.on("options", data => {
 
 function clicked(data) {
     console.log(data);
-    socket.emit('botRequestMessage', {
-        message: data
-    });
+    
 }
 
 function scrollToBottom() {
