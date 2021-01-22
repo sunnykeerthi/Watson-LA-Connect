@@ -81,6 +81,10 @@ io.on('connection', function (socket) {
                 var opts = [];
                 message.result.output.generic[0].options.forEach(item => opts.push(item.label));
                 //conversation.push('Bot: ' + message.result.output.generic[0].text + '\n');
+                conversation.push('Bot: ' + message.result.output.generic[0].title + '\n');
+                console.log(conversation);
+                socket.emit('botResponse', message.result.output.generic[0].title);
+                socket.emit('botResponse', opts)
                 console.log(JSON.stringify(opts));
                 //socket.emit('botResponse', message.result.output.generic[0].text);
 
