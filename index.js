@@ -84,7 +84,7 @@ io.on('connection', function (socket) {
                 var labelContent = '';
                 message.result.output.generic[0].options.forEach(item => { opts.push(item.label); labelContent += `\t ${item.label}` });
                 //conversation.push('Bot: ' + message.result.output.generic[0].text + '\n');
-                conversation.push(labelContent + '\n');
+                conversation.push(`Options => ${labelContent} \n`);
                 console.log(conversation);
                 //socket.emit('botResponse', message.result.output.generic[0].title);
                 socket.emit('optns', opts)
