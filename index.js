@@ -58,7 +58,7 @@ io.on('connection', function (socket) {
 
     });
 
-   
+
     socket.on('botRequestMessage', async (data) => {
         console.log(IBMSessionId + '****');
         conversation.push('User: ' + data.message + '\n');
@@ -81,9 +81,10 @@ io.on('connection', function (socket) {
 
             } else if (message.result.output.generic[0].response_type == 'option') {
                 var opts = [];
-                message.result.output.generic[0].options.forEach(item => opts.push(item.label));
+                var labelContent = '';
+                message.result.output.generic[0].options.forEach(item => { opts.push(item.label); labelContent += `\t ${item.label}` });
                 //conversation.push('Bot: ' + message.result.output.generic[0].text + '\n');
-                conversation.push('Bot: ' + message.result.output.generic[0].title + '\n');
+                conversation.push(labelContent + '\n');
                 console.log(conversation);
                 //socket.emit('botResponse', message.result.output.generic[0].title);
                 socket.emit('optns', opts)
