@@ -58,6 +58,7 @@ io.on('connection', function (socket) {
 
     });
 
+   
     socket.on('botRequestMessage', async (data) => {
         console.log(IBMSessionId + '****');
         conversation.push('User: ' + data.message + '\n');
@@ -71,20 +72,20 @@ io.on('connection', function (socket) {
             }
         }
         const message = await assistant.message(payload);
+        console.log(JSON.stringify(message))
         try {
-            if (message.result.output.generic[0].response_type == 'text') {
+            if (message.result.output.generic[0].response_type == 'text' && message.result.output.generic[0].response_type != 'option') {
                 conversation.push('Bot: ' + message.result.output.generic[0].text + '\n');
                 console.log(conversation);
                 socket.emit('botResponse', message.result.output.generic[0].text);
 
             } else if (message.result.output.generic[0].response_type == 'option') {
-                console.log('in options');
                 var opts = [];
                 message.result.output.generic[0].options.forEach(item => opts.push(item.label));
                 //conversation.push('Bot: ' + message.result.output.generic[0].text + '\n');
                 conversation.push('Bot: ' + message.result.output.generic[0].title + '\n');
                 console.log(conversation);
-                socket.emit('botResponse', message.result.output.generic[0].title);
+                //socket.emit('botResponse', message.result.output.generic[0].title);
                 socket.emit('optns', opts)
                 console.log(JSON.stringify(opts));
 

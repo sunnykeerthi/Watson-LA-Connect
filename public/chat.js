@@ -110,11 +110,13 @@ socket.on("A_chat_End", data => {
     scrollToBottom();
 });
 
+
 socket.on("optns", data => {
+    console.log(JSON.stringify(data) + 'bot resp in opts');
     var _data = data;
-    console.log('entered optns')
+
     feedback.innerHTML = "";
-    output.innerHTML = `<div class="chat bot"> <div class="user-photo"> </div><div class="chat-message">`;
+    //output.innerHTML += `<div class="chat bot"> <div class="user-photo"> </div><div class="chat-message">`;
     _data.forEach(item => {
         var btn = document.createElement("BUTTON");
         btn.className = 'TestClass';
@@ -122,7 +124,7 @@ socket.on("optns", data => {
         btn.setAttribute('onclick', 'clicked(\'' + item + '\')')
         output.appendChild(btn);
     });
-    output.innerHTML += `</div></div>`;
+    //output.innerHTML += `</div></div>`;
     scrollToBottom();
 
 });

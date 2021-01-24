@@ -23,10 +23,11 @@
     order: -1;
     border-radius: 15px 0 15px 15px;
     background-color: #3b414a;
-    color: #a9acaf;
+    color: white;
 }
 
 .bot .chat-message, .agent .chat-message {
+    word-break: break-word;
     border-radius: 0 15px 15px 15px;
     background-color: white;
     color: black;
@@ -146,4 +147,12 @@ input {
 
 .show {
     display: flex;
+}
+
+button.TestClass {
+    padding: 0.85em;
+    margin: 2%;
+    border-radius: 15px;
+    background: transparent;
+    border-color: steelblue;
 }
