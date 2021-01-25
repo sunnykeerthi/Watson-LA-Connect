@@ -90,7 +90,7 @@ io.on('connection', function (socket) {
                 //conversation.push('Bot: ' + message.result.output.generic[0].text + '\n');
                 conversation.push(`Options => ${labelContent} \n`);
                 console.log(conversation);
-                //socket.emit('botResponse', message.result.output.generic[0].title);
+                socket.emit('botResponse', message.result.output.generic[0].title);
                 socket.emit('optns', opts)
                 console.log(JSON.stringify(opts));
 
