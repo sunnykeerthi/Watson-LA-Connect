@@ -51,8 +51,9 @@ io.on('connection', function (socket) {
                 console.log(`IBM Session Id is ${IBMSessionId}`);
                 socket.emit('IBMSessId', IBMSessionId);
             })
-                .catch(e => console.log(e));
+                .catch(e => { console.log('Error'); console.log(e) });
         } catch (err) {
+            console.log('Main err');
             console.log(err);
         }
 
