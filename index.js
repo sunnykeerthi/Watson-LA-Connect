@@ -73,8 +73,11 @@ io.on('connection', function (socket) {
             }
         }
         const message = await assistant.message(payload);
-        console.log(JSON.stringify(message))
         try {
+            console.log('-----------');
+            console.log(JSON.stringify(message));
+            console.log(JSON.stringify(message));
+
             if (message.result.output.generic[0].response_type == 'text' && message.result.output.generic[0].response_type != 'option') {
                 conversation.push('Bot: ' + message.result.output.generic[0].text + '\n');
                 console.log(conversation);
@@ -91,7 +94,7 @@ io.on('connection', function (socket) {
                 socket.emit('optns', opts)
                 console.log(JSON.stringify(opts));
 
-            } else {
+            } else if (message.result.output.generic[0].response_type == 'connect_to_agent') {
                 socket.emit('transferResponse', 'Connecting you to Agent');
             }
         } catch (e) {
