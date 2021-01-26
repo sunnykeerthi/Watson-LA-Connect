@@ -65,7 +65,7 @@ io.on('connection', function (socket) {
         conversation.push('User: ' + data.message + '\n');
         socket.emit('U_chat', data.message);
         payload = {
-            assistantId: process.env.WATSON_ASSISTANT_ID,
+            assistantId: 'cd1bbccf-b595-4337-8c4e-e018d9b23bd1',
             sessionId: IBMSessionId,
             input: {
                 message_type: 'text',
