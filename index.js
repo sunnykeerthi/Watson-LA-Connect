@@ -25,13 +25,13 @@ var {
 } = require('ibm-watson/auth');
 //authenticate
 const authenticator = new IamAuthenticator({
-    apikey: process.env.WATSON_ASSISTANT_KEY
+    apikey: 'FgosQhVf-JYUoF5KEb7lWPjTa_PXXcgMK_yIibqMA3Is'
 })
 //connect to assistant
 const assistant = new assistantV2({
     version: '2020-09-13',
     authenticator: authenticator,
-    url: process.env.WATSON_ASSISTANT_URL
+    url: 'https://api.au-syd.assistant.watson.cloud.ibm.com/instances/006d911f-d432-432c-93db-43cac692c2d8'
 })
 
 
@@ -45,7 +45,7 @@ io.on('connection', function (socket) {
     socket.on('initMsg', async () => {
         try {
             const sess = assistant.createSession({
-                assistantId: process.env.WATSON_ASSISTANT_ID
+                assistantId: 'cd1bbccf-b595-4337-8c4e-e018d9b23bd1'
             }).then(data => {
                 IBMSessionId = data['result']['session_id'];
                 console.log(`IBM Session Id is ${IBMSessionId}`);
