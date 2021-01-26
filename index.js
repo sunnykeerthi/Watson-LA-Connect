@@ -91,7 +91,7 @@ io.on('connection', function (socket) {
                 conversation.push(`Options => ${labelContent} \n`);
                 console.log(conversation);
                 socket.emit('botResponse', message.result.output.generic[0].title);
-                socket.emit('optns', opts)
+                socket.emit('optns', opts);
                 console.log(JSON.stringify(opts));
 
             } else if (message.result.output.generic[0].response_type == 'connect_to_agent') {
@@ -248,7 +248,7 @@ io.on('connection', function (socket) {
                     while (pullmessageorg.messages[0].type != "ChatEnded") {
 
                         if (pullmessageorg.messages[0].type === "ChatRequestSuccess") {
-                            io.sockets.emit('A_chat', ` Waiting for agent to accept your request.\n Your are in position ${getAgentAvailability.data.messages[0].message.results[0].estimatedWaitTime}`);
+                            io.sockets.emit('A_chat', ` Waiting for agent to accept your request.\n Your are in position 1`);
                             console.log(
 
                                 "\n Waiting for agent to accept your request."
